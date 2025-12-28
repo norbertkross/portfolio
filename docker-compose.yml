@@ -1,0 +1,20 @@
+services:
+  web:
+    build: .
+    networks:
+      - dokploy-network
+    command: npm run start
+    env_file:
+      - .env
+    restart: unless-stopped
+    # Add labels to services that users will hit with Traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.norbertaberor.rule=Host(`norbertaberor.dev`)"
+      - "traefik.http.routers.norbertaberor.entrypoints=websecure"
+      - "traefik.http.routers.norbertaberor.tls.certResolver=letsencrypt"
+      - "traefik.http.services.norbertaberor.loadbalancer.server.port=4007"
+
+networks:
+  dokploy-network:
+    external: true
