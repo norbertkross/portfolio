@@ -135,4 +135,21 @@ export const BlogService = {
     }
   },
 
+
+
+  /**
+   * Resolve a blog by either Firestore document id (preferred) or by slug.
+   * This makes direct `/blogs/{id}` loads work even if `{id}` is actually a slug.
+   */
+  async getBlogByIdentifier(identifier: string): Promise<Blog | undefined> {
+    const cleanId = identifier;
+
+    // 1. Try by Document ID
+    const byDocId = await this.getBlogById(cleanId);
+    if (byDocId) {
+      return byDocId;
+    }
+
+    return undefined;
+  },
 };
