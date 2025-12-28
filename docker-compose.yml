@@ -1,5 +1,5 @@
 services:
-  web:
+  portfolio:
     build: .
     networks:
       - dokploy-network
