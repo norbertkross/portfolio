@@ -3,6 +3,7 @@ import ImageComponent from '../../components/ImageCompnent'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { getProjects, Project } from '../../utils/content'
+import ProjectCard from '../../components/ProjectCard'
 
 const Works: React.FC = () => {
   const [projects, setProjects] = useState<Project[]>([])
@@ -18,24 +19,19 @@ const Works: React.FC = () => {
   }, [])
 
   return (
-    <div className="mx-auto w-full md:w-10/12">
-      <div className='grid grid-cols-1 gap-16 md:grid-cols-2'>
+    <div className="mx-auto w-full">
+      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {projects.map((project) => (
-          <section key={project.id} className='container'>
-            <div className="cursor-pointer" onClick={() => setSelectedFeature(project)}>
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <ImageComponent
-                  src={project.images[0] || ''}
-                  alt={project.name}
-                  isGray={false}
-                  className='h-[250px] w-full md:h-[400px] rounded object-contain bg-gray-50 border border-slate-200'
-                />
-              </motion.div>
-            </div>
-          </section>
+          <motion.div
+            key={project.id}
+            whileHover={{ y: -2 }}
+            transition={{ type: 'spring', stiffness: 300 }}
+          >
+            <ProjectCard
+              project={project}
+              onClick={() => setSelectedFeature(project)}
+            />
+          </motion.div>
         ))}
       </div>
       <AnimatePresence>
@@ -60,6 +56,18 @@ const Works: React.FC = () => {
                 isGray={false}
                 className="h-64 mt-4 w-full rounded-2xl object-contain bg-gray-50"
               />
+              {selectedFeature.skills && selectedFeature.skills.length > 0 && (
+                <div className="flex flex-wrap gap-2">
+                  {selectedFeature.skills.map((skill) => (
+                    <span
+                      key={skill}
+                      className="rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1 text-sm text-neutral-700"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              )}
               <h2 className="text-4xl font-bold">{selectedFeature.name}</h2>
               <p className="text-xl text-black/90">{selectedFeature.description}</p>
 
@@ -74,7 +82,7 @@ const Works: React.FC = () => {
                         rel="noopener noreferrer"
                         className="rounded-full bg-black px-6 py-2 text-white transition-colors hover:bg-gray-800"
                       >
-                        {link.label || 'Visit Website'}
+                        {link.label || 'Visit Website'} <span role="img" aria-label="external link">🔗</span>
                       </a>
                     )
                   ))}

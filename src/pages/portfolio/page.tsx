@@ -3,6 +3,9 @@ import Footer from "../../components/footer";
 import { Mail, Github, Linkedin, MapPin, Briefcase, ExternalLink, Code2, Cpu, Globe } from "lucide-react";
 import { useState, useEffect } from "react";
 import { getProjects, Project } from "../../utils/content";
+import ProjectCard from "../../components/ProjectCard";
+// import ProfileImg from "../../assets/images/norbert-aberor.png";
+import ProfileImg from "../../assets/images/norbert-aberor.jpeg";
 
 const SkillCategory = ({ title, skills, icon: Icon }: { title: string, skills: string[], icon: React.ElementType }) => (
   <div className="flex flex-col gap-4 p-6 rounded-2xl border border-neutral-200 bg-white transition-all hover:border-neutral-400">
@@ -18,25 +21,6 @@ const SkillCategory = ({ title, skills, icon: Icon }: { title: string, skills: s
           {skill}
         </span>
       ))}
-    </div>
-  </div>
-);
-
-const ProjectCard = ({ project }: { project: Project }) => (
-  <div className="group flex flex-col gap-4 p-4 rounded-2xl border border-neutral-200 bg-white transition-all hover:border-neutral-400">
-    <div className="relative aspect-video overflow-hidden rounded-xl border border-neutral-100">
-      <img
-        src={project.images[0]}
-        alt={project.name}
-        className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
-      />
-    </div>
-    <div className="flex flex-col gap-2">
-      <div className="flex items-center justify-between">
-        <h3 className="text-xl font-bold text-neutral-900">{project.name}</h3>
-        <ExternalLink className="w-4 h-4 text-neutral-400 group-hover:text-black transition-colors" />
-      </div>
-      <p className="text-sm text-neutral-500 line-clamp-2 leading-relaxed">{project.description}</p>
     </div>
   </div>
 );
@@ -149,6 +133,24 @@ export default function Portfolio() {
               </div>
             </div>
           </div>
+
+          <div className="flex-shrink-0 w-64 h-64 md:w-80 md:h-80 relative">
+            <div className="absolute inset-0 bg-neutral-200 rounded-3xl rotate-3"></div>
+            <img
+              src={ProfileImg}
+              alt="Norbert Aberor"
+              className="relative z-10 w-full h-full object-cover rounded-3xl shadow-xl border-4 border-white"
+            />
+          </div>
+          {/* <div className="flex-shrink-0 h-[400px] w-[288px] md:h-[80vh] md:w-[320px] relative">
+            <div className="absolute inset-0 rounded-3xl rotate-3"></div>
+            <img
+              src={ProfileImg}
+              alt="Norbert Aberor"
+              className="relative z-10 w-full h-full object-contain"
+            />
+          </div> */}
+
         </section>
 
         {/* Arsenal / Skills Section */}
