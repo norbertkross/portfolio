@@ -16,7 +16,7 @@ export const getProjects = async () => {
       tagline: "AI-powered recruiting made simple",
       description:
         "ScoutWeave is a modern ATS that helps HR teams and recruiters attract, manage, and hire the best talent faster. It streamlines hiring with smart job campaigns, AI-powered resume parsing, and intelligent candidate matching—plus collaboration workflows and analytics to support better, faster decisions.",
-      links: [{ label: "Website", url: "https://www.scoutweave.com" }],
+      links: [{ label: "Website", url: "https://scoutweave.com" }],
       skills: ["React", "TypeScript", "Tailwind CSS", "AI/ML", "ATS"],
       images: [
         "https://raw.githubusercontent.com/Sailnex/public-assets/refs/heads/main/sailnex/scoutweave1.png",
